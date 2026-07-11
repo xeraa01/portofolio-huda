@@ -1,0 +1,304 @@
+```html
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khoirul Huda - Personal Portfolio</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              300: '#c4b5fd',
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              800: '#5b21b6',
+              900: '#4c1d95',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts & FontAwesome for Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .glass-nav {
+      backdrop-filter: blur(12px);
+      background-color: rgba(15, 23, 42, 0.75);
+    }
+    .light .glass-nav {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 dark:bg-slate-950 dark:text-slate-100 light:bg-slate-50 light:text-slate-900 transition-colors duration-300">
+
+  <!-- NOTIFIKASI CUSTOM (Menggantikan alert browser) -->
+  <div id="toastNotification" class="fixed top-5 right-5 z-50 transform translate-y-[-150%] opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-emerald-500 text-white px-6 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+      <i class="fa-solid fa-circle-check text-xl"></i>
+      <div>
+        <h4 class="font-bold text-sm">Berhasil Kirim Pesan</h4>
+        <p class="text-xs text-emerald-100">Pesan simulasi Anda telah tersimpan di browser!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="fixed top-0 left-0 w-full z-40 glass-nav border-b border-slate-800/50 light:border-slate-200/50 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center">
+          <a href="#hero" class="text-xl font-extrabold bg-gradient-to-r from-primary-400 to-indigo-500 bg-clip-text text-transparent hover:opacity-85 transition-all">
+            K. HUDA
+          </a>
+        </div>
+        
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#tentang" class="text-sm font-medium text-slate-300 dark:text-slate-300 hover:text-primary-400 transition-colors">Tentang</a>
+          <a href="#keahlian" class="text-sm font-medium text-slate-300 dark:text-slate-300 hover:text-primary-400 transition-colors">Keahlian</a>
+          <a href="#pengalaman" class="text-sm font-medium text-slate-300 dark:text-slate-300 hover:text-primary-400 transition-colors">Pengalaman</a>
+          <a href="#portofolio" class="text-sm font-medium text-slate-300 dark:text-slate-300 hover:text-primary-400 transition-colors">Proyek</a>
+          <a href="#kontak" class="text-sm font-medium text-slate-300 dark:text-slate-300 hover:text-primary-400 transition-colors">Kontak</a>
+        </div>
+
+        <!-- Utility Buttons -->
+        <div class="flex items-center gap-4">
+          <!-- Toggle Dark/Light Mode -->
+          <button id="themeToggleBtn" class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 light:bg-slate-100 light:border-slate-200 hover:scale-105 active:scale-95 transition-all" aria-label="Toggle Theme">
+            <i id="themeToggleIcon" class="fa-solid fa-sun text-amber-400 text-sm md:text-base"></i>
+          </button>
+          
+          <!-- CTA Button (Resume Download/Open link) -->
+          <a href="https://second-zebra-202035.framer.app/-porto" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-primary-600 to-indigo-600 hover:from-primary-500 hover:to-indigo-500 text-white text-xs font-semibold px-4 py-2.5 rounded-lg shadow-lg hover:shadow-primary-500/25 transition-all">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Original Portofolio
+          </a>
+
+          <!-- Mobile Menu Button -->
+          <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 focus:outline-none" aria-label="Toggle Menu">
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Nav Menu -->
+    <div id="mobileMenu" class="hidden md:hidden px-4 pt-2 pb-4 bg-slate-950/95 border-b border-slate-800/80 space-y-2">
+      <a href="#tentang" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-900 hover:text-primary-400 transition-all">Tentang</a>
+      <a href="#keahlian" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-900 hover:text-primary-400 transition-all">Keahlian</a>
+      <a href="#pengalaman" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-900 hover:text-primary-400 transition-all">Pengalaman</a>
+      <a href="#portofolio" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-900 hover:text-primary-400 transition-all">Proyek</a>
+      <a href="#kontak" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-900 hover:text-primary-400 transition-all">Kontak</a>
+      <a href="https://second-zebra-202035.framer.app/-porto" target="_blank" class="flex items-center justify-center gap-2 w-full bg-slate-900 border border-slate-800 text-slate-300 text-sm font-semibold py-2.5 px-4 rounded-lg mt-4">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> Web Portofolio Framer
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden flex items-center">
+    <!-- Background Gradients -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary-600/10 dark:bg-primary-600/15 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-indigo-600/10 dark:bg-indigo-600/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Text Hero -->
+        <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-500/10 text-primary-400 text-xs font-semibold tracking-wide border border-primary-500/20">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Mahasiswa Teknik Komputer
+          </span>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-none text-slate-900 dark:text-white">
+            Halo, Saya <br class="hidden sm:block">
+            <span class="bg-gradient-to-r from-primary-400 via-indigo-400 to-violet-500 bg-clip-text text-transparent">
+              Khoirul Huda
+            </span>
+          </h1>
+          <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+            Spesialis di bidang <span class="text-primary-400 font-semibold">Jaringan Komputer & IT Support</span> serta aktif mengembangkan kemampuan sebagai <span class="text-indigo-400 font-semibold">Front-End Developer</span>. Berkomitmen menghadirkan solusi teknologi yang efisien dan responsif.
+          </p>
+          
+          <!-- CTA Action -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+            <a href="#kontak" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-primary-600 to-indigo-600 hover:from-primary-500 hover:to-indigo-500 text-white font-medium rounded-xl shadow-xl shadow-primary-900/10 hover:shadow-primary-900/30 text-center transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+              <i class="fa-regular fa-envelope"></i> Hubungi Saya
+            </a>
+            <a href="#portofolio" class="w-full sm:w-auto px-8 py-3.5 bg-slate-900 hover:bg-slate-800 dark:bg-slate-900 dark:hover:bg-slate-800 border border-slate-800 hover:border-slate-700 light:bg-white light:hover:bg-slate-100 light:border-slate-200 text-slate-300 dark:text-slate-300 light:text-slate-800 font-medium rounded-xl text-center transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+              Lihat Proyek <i class="fa-solid fa-arrow-down"></i>
+            </a>
+          </div>
+
+          <!-- Socials & Quick Info -->
+          <div class="flex justify-center lg:justify-start items-center gap-6 pt-6 text-slate-400">
+            <a href="mailto:khuda3496@gmail.com" class="hover:text-primary-400 transition-colors" title="Email Saya"><i class="fa-regular fa-envelope text-2xl"></i></a>
+            <a href="tel:089655766263" class="hover:text-primary-400 transition-colors" title="Telepon Saya"><i class="fa-solid fa-phone text-xl"></i></a>
+            <a href="https://second-zebra-202035.framer.app/-porto" target="_blank" class="hover:text-primary-400 transition-colors" title="Original Framer Portfolio"><i class="fa-solid fa-globe text-2xl"></i></a>
+            <span class="text-slate-600 dark:text-slate-800">|</span>
+            <span class="text-sm flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-rose-500"></i> Surakarta, Indonesia</span>
+          </div>
+        </div>
+
+        <!-- Image Profile -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative group">
+            <!-- Decorative Backplates -->
+            <div class="absolute -inset-1.5 bg-gradient-to-r from-primary-600 via-indigo-500 to-violet-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+            <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-slate-950 dark:border-slate-950 bg-rose-700 flex items-center justify-center">
+              <!-- Silhouette Vector resembling red-tie photo from CV -->
+              <svg viewBox="0 0 200 200" class="w-full h-full text-slate-100">
+                <circle cx="100" cy="100" r="100" fill="#a82525"/>
+                <!-- Suit body -->
+                <path d="M40 200 C40 150, 70 130, 100 130 C130 130, 160 150, 160 200 Z" fill="#111827" />
+                <!-- White Shirt -->
+                <polygon points="85,130 115,130 100,165" fill="#FFFFFF" />
+                <!-- Red Tie -->
+                <polygon points="96,160 104,160 106,195 100,205 94,195" fill="#EF4444" />
+                <!-- Collar design -->
+                <polygon points="82,130 92,152 94,130" fill="#E5E7EB" />
+                <polygon points="118,130 108,152 106,130" fill="#E5E7EB" />
+                <!-- Face -->
+                <circle cx="100" cy="92" r="38" fill="#FDBA74" />
+                <!-- Hair -->
+                <path d="M60 85 C55 60, 75 45, 100 48 C125 45, 145 60, 140 85 C145 75, 140 55, 130 52 C115 48, 110 55, 100 55 C90 55, 85 48, 70 52 C60 55, 55 75, 60 85 Z" fill="#1F2937" />
+                <path d="M62 70 C65 65, 75 62, 85 68 C80 65, 70 65, 65 72 Z" fill="#111827" />
+                <path d="M138 70 C135 65, 125 62, 115 68 C120 65, 130 65, 135 72 Z" fill="#111827" />
+                <!-- Eyes -->
+                <circle cx="86" cy="92" r="3" fill="#1F2937" />
+                <circle cx="114" cy="92" r="3" fill="#1F2937" />
+                <!-- Eyebrows -->
+                <path d="M80 86 Q86 83 92 87" stroke="#1F2937" stroke-width="2.5" fill="none" />
+                <path d="M108 87 Q114 83 120 86" stroke="#1F2937" stroke-width="2.5" fill="none" />
+                <!-- Nose -->
+                <path d="M97 94 Q100 90 103 94 Q100 97 97 94" fill="#F97316" opacity="0.6"/>
+                <!-- Lips -->
+                <path d="M90 108 Q100 115 110 108" stroke="#E11D48" stroke-width="2.5" fill="none" stroke-linecap="round" />
+              </svg>
+            </div>
+            <!-- Badge overlay -->
+            <div class="absolute bottom-2 -right-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[10px] md:text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1">
+              <i class="fa-solid fa-briefcase"></i> Siap Kerja
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TENTANG SAYA -->
+  <section id="tentang" class="py-20 bg-slate-900/40 light:bg-slate-100 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center space-y-4 mb-16">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Tentang Saya</h2>
+        <div class="w-16 h-1 bg-primary-500 mx-auto rounded-full"></div>
+        <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm md:text-base">Sekilas latar belakang, profil akademik, dan nilai yang saya pegang.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <!-- Profil Deskriptif -->
+        <div class="lg:col-span-7 space-y-6">
+          <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-200">Siapa Saya Sebenarnya?</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed">
+            Saya adalah Mahasiswa yang memiliki minat mendalam dan kompetensi di bidang Teknologi Informasi, dengan penajaman keahlian di dua pilar utama: <strong class="text-slate-800 dark:text-slate-300">Infrastruktur Jaringan & Komputer</strong>, serta <strong class="text-slate-800 dark:text-slate-300">Modern Front-End Web Development</strong>.
+          </p>
+          <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed">
+            Berbekal dasar pendidikan TKJ dan kelanjutan studi di Universitas Duta Bangsa prodi Teknik Komputer, saya telah membuktikan kapabilitas melalui Praktik Kerja Lapangan (PKL) dalam mengelola operasional IT fisik maupun logika. Tidak berhenti di sana, saya mengejar kemajuan industri web modern lewat program intensif Kelas Industri GAMELAB.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-slate-900 border border-slate-800/60 light:bg-white light:border-slate-200">
+              <i class="fa-solid fa-graduation-cap text-primary-400 text-xl mt-1"></i>
+              <div>
+                <h4 class="font-bold text-slate-800 dark:text-slate-200 text-sm">Akademik & Teori</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Kombinasi teori hardware, struktur komputer, dan logika rekayasa.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-slate-900 border border-slate-800/60 light:bg-white light:border-slate-200">
+              <i class="fa-solid fa-gears text-primary-400 text-xl mt-1"></i>
+              <div>
+                <h4 class="font-bold text-slate-800 dark:text-slate-200 text-sm">Praktik & Industri</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Pengalaman nyata menangani cabling, troubleshooting, & modern web framework.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detail Pendidikan -->
+        <div class="lg:col-span-5 space-y-6">
+          <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-200">Riwayat Pendidikan</h3>
+          
+          <div class="relative border-l-2 border-primary-500/30 pl-6 ml-2 space-y-8">
+            <!-- Pendidikan 1 -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-1 bg-primary-500 w-4 h-4 rounded-full border-4 border-slate-950 dark:border-slate-950"></span>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800/60 light:bg-white light:border-slate-200">
+                <span class="text-xs font-bold text-primary-400 uppercase tracking-wider">Perguruan Tinggi</span>
+                <h4 class="text-base font-extrabold text-slate-800 dark:text-white mt-1">Universitas Duta Bangsa</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-0.5">Teknik Komputer</p>
+                <p class="text-xs text-slate-600 dark:text-slate-500 mt-2 flex items-center gap-1.5"><i class="fa-solid fa-clock"></i> Masih Berjalan</p>
+              </div>
+            </div>
+
+            <!-- Pendidikan 2 -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-1 bg-primary-500 w-4 h-4 rounded-full border-4 border-slate-950 dark:border-slate-950"></span>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800/60 light:bg-white light:border-slate-200">
+                <span class="text-xs font-bold text-primary-400 uppercase tracking-wider">Pendidikan Menengah</span>
+                <h4 class="text-base font-extrabold text-slate-800 dark:text-white mt-1">SMK Al-Islam Surakarta</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-0.5">TKJ (Teknik Komputer Jaringan)</p>
+                <p class="text-xs text-slate-600 dark:text-slate-500 mt-2 flex items-center gap-1.5"><i class="fa-solid fa-calendar-check"></i> Lulus</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEAHLIAN / SKILLS -->
+  <section id="keahlian" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center space-y-4 mb-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Keahlian & Kompetensi</h2>
+        <div class="w-16 h-1 bg-primary-500 mx-auto rounded-full"></div>
+        <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm md:text-base">Membagi kompetensi ke dalam dua pilar utama keahlian IT saya.</p>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="flex justify-center mb-10">
+        <div class="inline-flex p-1 rounded-xl bg-slate-900 border border-slate-800 light:bg-slate-200 light:border-slate-300">
+          <button id="tabWebBtn" class="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-primary-600 text-white" onclick="switchSkillTab('web')">
+            <i class="fa-solid fa-code mr-1.5"></i> Web Development
+          </button>
+          <button id="tabNetBtn" class="px-5 py-2.5 rounded-lg text-sm font-semibold text-slate-400 dark:text-slate-400 hover:text-slate-200 transition-all duration-300" onclick="switchSkillTab('network')">
+            <i class="fa-solid fa-network-wired mr-1.5"></i> Networking & Support
+          </button>
+        </div>
+      </div>
+
+      <!-- Skills Grid Container -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- WEB DEV SKILLS (Shown by default) -->
+        <div class="skill-card-web bg-slate-900 border border-slate-800/80 light:bg-white light:border-slate-200 p-6 rounded-2xl flex gap-4 items-start hover:-tran
