@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth dark">
 <head>
@@ -38,6 +37,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -45,14 +45,18 @@
     }
     .glass-nav {
       backdrop-filter: blur(12px);
-      background-color: rgba(15, 23, 42, 0.75);
     }
-    .light .glass-nav {
-      background-color: rgba(255, 255, 255, 0.8);
+    /* Smooth gradient animation for background elements */
+    @keyframes pulse-slow {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.15; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.25; }
+    }
+    .animate-pulse-slow {
+      animation: pulse-slow 8s infinite ease-in-out;
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 dark:bg-slate-950 dark:text-slate-100 light:bg-slate-50 light:text-slate-900 transition-colors duration-300">
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col">
 
   <!-- NOTIFIKASI CUSTOM (Menggantikan alert browser) -->
   <div id="toastNotification" class="fixed top-5 right-5 z-50 transform translate-y-[-150%] opacity-0 transition-all duration-300 pointer-events-none">
@@ -66,7 +70,7 @@
   </div>
 
   <!-- NAVIGATION -->
-  <nav class="fixed top-0 left-0 w-full z-40 glass-nav border-b border-slate-800/50 light:border-slate-200/50 transition-colors duration-300">
+  <nav class="fixed top-0 left-0 w-full z-40 glass-nav border-b border-slate-200/50 bg-white/75 dark:border-slate-800/50 dark:bg-slate-950/75 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
@@ -78,27 +82,27 @@
         
         <!-- Desktop Nav -->
         <div class="hidden md:flex items-center gap-8">
-          <a href="#tentang" class="text-sm font-medium text-slate-300 dark:text-slate-300 hover:text-primary-400 transition-colors">Tentang</a>
-          <a href="#keahlian" class="text-sm font-medium text-slate-300 dark:text-slate-300 hover:text-primary-400 transition-colors">Keahlian</a>
-          <a href="#pengalaman" class="text-sm font-medium text-slate-300 dark:text-slate-300 hover:text-primary-400 transition-colors">Pengalaman</a>
-          <a href="#portofolio" class="text-sm font-medium text-slate-300 dark:text-slate-300 hover:text-primary-400 transition-colors">Proyek</a>
-          <a href="#kontak" class="text-sm font-medium text-slate-300 dark:text-slate-300 hover:text-primary-400 transition-colors">Kontak</a>
+          <a href="#tentang" class="text-sm font-medium text-slate-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 transition-colors">Tentang</a>
+          <a href="#keahlian" class="text-sm font-medium text-slate-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 transition-colors">Keahlian</a>
+          <a href="#pengalaman" class="text-sm font-medium text-slate-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 transition-colors">Pengalaman</a>
+          <a href="#portofolio" class="text-sm font-medium text-slate-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 transition-colors">Proyek</a>
+          <a href="#kontak" class="text-sm font-medium text-slate-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 transition-colors">Kontak</a>
         </div>
 
         <!-- Utility Buttons -->
         <div class="flex items-center gap-4">
           <!-- Toggle Dark/Light Mode -->
-          <button id="themeToggleBtn" class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 light:bg-slate-100 light:border-slate-200 hover:scale-105 active:scale-95 transition-all" aria-label="Toggle Theme">
-            <i id="themeToggleIcon" class="fa-solid fa-sun text-amber-400 text-sm md:text-base"></i>
+          <button id="themeToggleBtn" class="p-2.5 rounded-lg bg-slate-100 border border-slate-200 dark:bg-slate-900 dark:border-slate-800 hover:scale-105 active:scale-95 transition-all" aria-label="Toggle Theme">
+            <i id="themeToggleIcon" class="fa-solid fa-moon text-indigo-500 dark:text-amber-400 text-sm md:text-base"></i>
           </button>
           
-          <!-- CTA Button (Resume Download/Open link) -->
+          <!-- CTA Button -->
           <a href="https://second-zebra-202035.framer.app/-porto" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-primary-600 to-indigo-600 hover:from-primary-500 hover:to-indigo-500 text-white text-xs font-semibold px-4 py-2.5 rounded-lg shadow-lg hover:shadow-primary-500/25 transition-all">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> Original Portofolio
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Original Portfolio
           </a>
 
           <!-- Mobile Menu Button -->
-          <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 focus:outline-none" aria-label="Toggle Menu">
+          <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 focus:outline-none" aria-label="Toggle Menu">
             <i class="fa-solid fa-bars text-xl"></i>
           </button>
         </div>
@@ -106,58 +110,58 @@
     </div>
 
     <!-- Mobile Nav Menu -->
-    <div id="mobileMenu" class="hidden md:hidden px-4 pt-2 pb-4 bg-slate-950/95 border-b border-slate-800/80 space-y-2">
-      <a href="#tentang" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-900 hover:text-primary-400 transition-all">Tentang</a>
-      <a href="#keahlian" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-900 hover:text-primary-400 transition-all">Keahlian</a>
-      <a href="#pengalaman" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-900 hover:text-primary-400 transition-all">Pengalaman</a>
-      <a href="#portofolio" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-900 hover:text-primary-400 transition-all">Proyek</a>
-      <a href="#kontak" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-900 hover:text-primary-400 transition-all">Kontak</a>
-      <a href="https://second-zebra-202035.framer.app/-porto" target="_blank" class="flex items-center justify-center gap-2 w-full bg-slate-900 border border-slate-800 text-slate-300 text-sm font-semibold py-2.5 px-4 rounded-lg mt-4">
-        <i class="fa-solid fa-arrow-up-right-from-square"></i> Web Portofolio Framer
+    <div id="mobileMenu" class="hidden md:hidden px-4 pt-2 pb-4 bg-white/95 dark:bg-slate-950/95 border-b border-slate-200 dark:border-slate-800 space-y-2">
+      <a href="#tentang" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-primary-600 dark:hover:text-primary-400 transition-all">Tentang</a>
+      <a href="#keahlian" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-primary-600 dark:hover:text-primary-400 transition-all">Keahlian</a>
+      <a href="#pengalaman" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-primary-600 dark:hover:text-primary-400 transition-all">Pengalaman</a>
+      <a href="#portofolio" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-primary-600 dark:hover:text-primary-400 transition-all">Proyek</a>
+      <a href="#kontak" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-primary-600 dark:hover:text-primary-400 transition-all">Kontak</a>
+      <a href="https://second-zebra-202035.framer.app/-porto" target="_blank" class="flex items-center justify-center gap-2 w-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-sm font-semibold py-2.5 px-4 rounded-lg mt-4">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> Web Portfolio Framer
       </a>
     </div>
   </nav>
 
   <!-- HERO SECTION -->
-  <section id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden flex items-center">
+  <section id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden flex items-center flex-grow">
     <!-- Background Gradients -->
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary-600/10 dark:bg-primary-600/15 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute top-1/4 left-1/2 w-[500px] h-[500px] bg-primary-600/10 dark:bg-primary-600/15 rounded-full blur-[120px] pointer-events-none animate-pulse-slow"></div>
     <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-indigo-600/10 dark:bg-indigo-600/15 rounded-full blur-[100px] pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <!-- Text Hero -->
         <div class="lg:col-span-7 text-center lg:text-left space-y-6">
-          <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-500/10 text-primary-400 text-xs font-semibold tracking-wide border border-primary-500/20">
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-500/10 text-primary-600 dark:text-primary-400 text-xs font-semibold tracking-wide border border-primary-500/20">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Mahasiswa Teknik Komputer
           </span>
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-none text-slate-900 dark:text-white">
             Halo, Saya <br class="hidden sm:block">
-            <span class="bg-gradient-to-r from-primary-400 via-indigo-400 to-violet-500 bg-clip-text text-transparent">
+            <span class="bg-gradient-to-r from-primary-500 via-indigo-500 to-violet-600 bg-clip-text text-transparent dark:from-primary-400 dark:via-indigo-400 dark:to-violet-500">
               Khoirul Huda
             </span>
           </h1>
           <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
-            Spesialis di bidang <span class="text-primary-400 font-semibold">Jaringan Komputer & IT Support</span> serta aktif mengembangkan kemampuan sebagai <span class="text-indigo-400 font-semibold">Front-End Developer</span>. Berkomitmen menghadirkan solusi teknologi yang efisien dan responsif.
+            Spesialis di bidang <span class="text-primary-600 dark:text-primary-400 font-semibold">Jaringan Komputer & IT Support</span> serta aktif mengembangkan kemampuan sebagai <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Front-End Developer</span>. Berkomitmen menghadirkan solusi teknologi yang efisien dan responsif.
           </p>
           
           <!-- CTA Action -->
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-            <a href="#kontak" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-primary-600 to-indigo-600 hover:from-primary-500 hover:to-indigo-500 text-white font-medium rounded-xl shadow-xl shadow-primary-900/10 hover:shadow-primary-900/30 text-center transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+            <a href="#kontak" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-primary-600 to-indigo-600 hover:from-primary-500 hover:to-indigo-500 text-white font-medium rounded-xl shadow-xl shadow-primary-900/10 dark:shadow-primary-900/30 text-center transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
               <i class="fa-regular fa-envelope"></i> Hubungi Saya
             </a>
-            <a href="#portofolio" class="w-full sm:w-auto px-8 py-3.5 bg-slate-900 hover:bg-slate-800 dark:bg-slate-900 dark:hover:bg-slate-800 border border-slate-800 hover:border-slate-700 light:bg-white light:hover:bg-slate-100 light:border-slate-200 text-slate-300 dark:text-slate-300 light:text-slate-800 font-medium rounded-xl text-center transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+            <a href="#portofolio" class="w-full sm:w-auto px-8 py-3.5 bg-white hover:bg-slate-100 border border-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-slate-800 dark:hover:border-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-xl text-center transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
               Lihat Proyek <i class="fa-solid fa-arrow-down"></i>
             </a>
           </div>
 
           <!-- Socials & Quick Info -->
-          <div class="flex justify-center lg:justify-start items-center gap-6 pt-6 text-slate-400">
-            <a href="mailto:khuda3496@gmail.com" class="hover:text-primary-400 transition-colors" title="Email Saya"><i class="fa-regular fa-envelope text-2xl"></i></a>
-            <a href="tel:089655766263" class="hover:text-primary-400 transition-colors" title="Telepon Saya"><i class="fa-solid fa-phone text-xl"></i></a>
-            <a href="https://second-zebra-202035.framer.app/-porto" target="_blank" class="hover:text-primary-400 transition-colors" title="Original Framer Portfolio"><i class="fa-solid fa-globe text-2xl"></i></a>
-            <span class="text-slate-600 dark:text-slate-800">|</span>
-            <span class="text-sm flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-rose-500"></i> Surakarta, Indonesia</span>
+          <div class="flex justify-center lg:justify-start items-center gap-6 pt-6 text-slate-400 dark:text-slate-500">
+            <a href="mailto:khuda3496@gmail.com" class="text-slate-600 dark:text-slate-400 hover:text-primary-500 transition-colors" title="Email Saya"><i class="fa-regular fa-envelope text-2xl"></i></a>
+            <a href="tel:089655766263" class="text-slate-600 dark:text-slate-400 hover:text-primary-500 transition-colors" title="Telepon Saya"><i class="fa-solid fa-phone text-xl"></i></a>
+            <a href="https://second-zebra-202035.framer.app/-porto" target="_blank" class="text-slate-600 dark:text-slate-400 hover:text-primary-500 transition-colors" title="Original Framer Portfolio"><i class="fa-solid fa-globe text-2xl"></i></a>
+            <span class="text-slate-300 dark:text-slate-800">|</span>
+            <span class="text-sm text-slate-600 dark:text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-rose-500"></i> Surakarta, Indonesia</span>
           </div>
         </div>
 
@@ -165,37 +169,15 @@
         <div class="lg:col-span-5 flex justify-center">
           <div class="relative group">
             <!-- Decorative Backplates -->
-            <div class="absolute -inset-1.5 bg-gradient-to-r from-primary-600 via-indigo-500 to-violet-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
-            <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-slate-950 dark:border-slate-950 bg-rose-700 flex items-center justify-center">
-              <!-- Silhouette Vector resembling red-tie photo from CV -->
-              <svg viewBox="0 0 200 200" class="w-full h-full text-slate-100">
-                <circle cx="100" cy="100" r="100" fill="#a82525"/>
-                <!-- Suit body -->
-                <path d="M40 200 C40 150, 70 130, 100 130 C130 130, 160 150, 160 200 Z" fill="#111827" />
-                <!-- White Shirt -->
-                <polygon points="85,130 115,130 100,165" fill="#FFFFFF" />
-                <!-- Red Tie -->
-                <polygon points="96,160 104,160 106,195 100,205 94,195" fill="#EF4444" />
-                <!-- Collar design -->
-                <polygon points="82,130 92,152 94,130" fill="#E5E7EB" />
-                <polygon points="118,130 108,152 106,130" fill="#E5E7EB" />
-                <!-- Face -->
-                <circle cx="100" cy="92" r="38" fill="#FDBA74" />
-                <!-- Hair -->
-                <path d="M60 85 C55 60, 75 45, 100 48 C125 45, 145 60, 140 85 C145 75, 140 55, 130 52 C115 48, 110 55, 100 55 C90 55, 85 48, 70 52 C60 55, 55 75, 60 85 Z" fill="#1F2937" />
-                <path d="M62 70 C65 65, 75 62, 85 68 C80 65, 70 65, 65 72 Z" fill="#111827" />
-                <path d="M138 70 C135 65, 125 62, 115 68 C120 65, 130 65, 135 72 Z" fill="#111827" />
-                <!-- Eyes -->
-                <circle cx="86" cy="92" r="3" fill="#1F2937" />
-                <circle cx="114" cy="92" r="3" fill="#1F2937" />
-                <!-- Eyebrows -->
-                <path d="M80 86 Q86 83 92 87" stroke="#1F2937" stroke-width="2.5" fill="none" />
-                <path d="M108 87 Q114 83 120 86" stroke="#1F2937" stroke-width="2.5" fill="none" />
-                <!-- Nose -->
-                <path d="M97 94 Q100 90 103 94 Q100 97 97 94" fill="#F97316" opacity="0.6"/>
-                <!-- Lips -->
-                <path d="M90 108 Q100 115 110 108" stroke="#E11D48" stroke-width="2.5" fill="none" stroke-linecap="round" />
-              </svg>
+            <div class="absolute -inset-1.5 bg-gradient-to-r from-primary-600 via-indigo-500 to-violet-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+            <!-- Replacement of SVG with real photo.jpg.jpeg -->
+            <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-white dark:border-slate-950 bg-slate-200 dark:bg-slate-900 shadow-2xl">
+              <img 
+                src="foto.jpg.jpeg" 
+                alt="Khoirul Huda" 
+                class="w-full h-full object-cover object-center scale-105 group-hover:scale-110 transition duration-500"
+                onerror="this.onerror=null; this.src='https://placehold.co/400x400/8b5cf6/ffffff?text=Khoirul+Huda';"
+              />
             </div>
             <!-- Badge overlay -->
             <div class="absolute bottom-2 -right-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[10px] md:text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1">
@@ -208,12 +190,12 @@
   </section>
 
   <!-- TENTANG SAYA -->
-  <section id="tentang" class="py-20 bg-slate-900/40 light:bg-slate-100 transition-colors">
+  <section id="tentang" class="py-20 bg-slate-100/50 dark:bg-slate-900/40 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center space-y-4 mb-16">
         <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Tentang Saya</h2>
         <div class="w-16 h-1 bg-primary-500 mx-auto rounded-full"></div>
-        <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm md:text-base">Sekilas latar belakang, profil akademik, dan nilai yang saya pegang.</p>
+        <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm md:text-base">Sekilas latar belakang, profil akademik, dan nilai profesional saya.</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -221,24 +203,24 @@
         <div class="lg:col-span-7 space-y-6">
           <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-200">Siapa Saya Sebenarnya?</h3>
           <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed">
-            Saya adalah Mahasiswa yang memiliki minat mendalam dan kompetensi di bidang Teknologi Informasi, dengan penajaman keahlian di dua pilar utama: <strong class="text-slate-800 dark:text-slate-300">Infrastruktur Jaringan & Komputer</strong>, serta <strong class="text-slate-800 dark:text-slate-300">Modern Front-End Web Development</strong>.
+            Saya adalah Mahasiswa yang memiliki minat mendalam dan kompetensi di bidang Teknologi Informasi, dengan penajaman keahlian di dua pilar utama: <strong class="text-slate-800 dark:text-slate-300 font-semibold">Infrastruktur Jaringan & Komputer</strong>, serta <strong class="text-slate-800 dark:text-slate-300 font-semibold">Modern Front-End Web Development</strong>.
           </p>
           <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed">
             Berbekal dasar pendidikan TKJ dan kelanjutan studi di Universitas Duta Bangsa prodi Teknik Komputer, saya telah membuktikan kapabilitas melalui Praktik Kerja Lapangan (PKL) dalam mengelola operasional IT fisik maupun logika. Tidak berhenti di sana, saya mengejar kemajuan industri web modern lewat program intensif Kelas Industri GAMELAB.
           </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-            <div class="flex items-start gap-3 p-4 rounded-xl bg-slate-900 border border-slate-800/60 light:bg-white light:border-slate-200">
-              <i class="fa-solid fa-graduation-cap text-primary-400 text-xl mt-1"></i>
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/60 shadow-sm">
+              <i class="fa-solid fa-graduation-cap text-primary-500 dark:text-primary-400 text-xl mt-1"></i>
               <div>
                 <h4 class="font-bold text-slate-800 dark:text-slate-200 text-sm">Akademik & Teori</h4>
-                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Kombinasi teori hardware, struktur komputer, dan logika rekayasa.</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Kombinasi teori hardware, struktur komputer, dan logika rekayasa perangkat lunak.</p>
               </div>
             </div>
-            <div class="flex items-start gap-3 p-4 rounded-xl bg-slate-900 border border-slate-800/60 light:bg-white light:border-slate-200">
-              <i class="fa-solid fa-gears text-primary-400 text-xl mt-1"></i>
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/60 shadow-sm">
+              <i class="fa-solid fa-gears text-primary-500 dark:text-primary-400 text-xl mt-1"></i>
               <div>
                 <h4 class="font-bold text-slate-800 dark:text-slate-200 text-sm">Praktik & Industri</h4>
-                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Pengalaman nyata menangani cabling, troubleshooting, & modern web framework.</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Pengalaman nyata menangani cabling, troubleshooting, & modern web development.</p>
               </div>
             </div>
           </div>
@@ -251,23 +233,23 @@
           <div class="relative border-l-2 border-primary-500/30 pl-6 ml-2 space-y-8">
             <!-- Pendidikan 1 -->
             <div class="relative">
-              <span class="absolute -left-[31px] top-1 bg-primary-500 w-4 h-4 rounded-full border-4 border-slate-950 dark:border-slate-950"></span>
-              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800/60 light:bg-white light:border-slate-200">
-                <span class="text-xs font-bold text-primary-400 uppercase tracking-wider">Perguruan Tinggi</span>
+              <span class="absolute -left-[31px] top-1 bg-primary-500 w-4 h-4 rounded-full border-4 border-slate-50 dark:border-slate-950"></span>
+              <div class="p-4 rounded-xl bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/60 shadow-sm">
+                <span class="text-xs font-bold text-primary-500 dark:text-primary-400 uppercase tracking-wider">Perguruan Tinggi</span>
                 <h4 class="text-base font-extrabold text-slate-800 dark:text-white mt-1">Universitas Duta Bangsa</h4>
                 <p class="text-sm text-slate-600 dark:text-slate-400 mt-0.5">Teknik Komputer</p>
-                <p class="text-xs text-slate-600 dark:text-slate-500 mt-2 flex items-center gap-1.5"><i class="fa-solid fa-clock"></i> Masih Berjalan</p>
+                <p class="text-xs text-slate-500 dark:text-slate-500 mt-2 flex items-center gap-1.5"><i class="fa-solid fa-clock"></i> Aktif Berjalan</p>
               </div>
             </div>
 
             <!-- Pendidikan 2 -->
             <div class="relative">
-              <span class="absolute -left-[31px] top-1 bg-primary-500 w-4 h-4 rounded-full border-4 border-slate-950 dark:border-slate-950"></span>
-              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800/60 light:bg-white light:border-slate-200">
-                <span class="text-xs font-bold text-primary-400 uppercase tracking-wider">Pendidikan Menengah</span>
+              <span class="absolute -left-[31px] top-1 bg-primary-500 w-4 h-4 rounded-full border-4 border-slate-50 dark:border-slate-950"></span>
+              <div class="p-4 rounded-xl bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/60 shadow-sm">
+                <span class="text-xs font-bold text-primary-500 dark:text-primary-400 uppercase tracking-wider">Pendidikan Menengah</span>
                 <h4 class="text-base font-extrabold text-slate-800 dark:text-white mt-1">SMK Al-Islam Surakarta</h4>
                 <p class="text-sm text-slate-600 dark:text-slate-400 mt-0.5">TKJ (Teknik Komputer Jaringan)</p>
-                <p class="text-xs text-slate-600 dark:text-slate-500 mt-2 flex items-center gap-1.5"><i class="fa-solid fa-calendar-check"></i> Lulus</p>
+                <p class="text-xs text-slate-500 dark:text-slate-500 mt-2 flex items-center gap-1.5"><i class="fa-solid fa-calendar-check"></i> Lulus</p>
               </div>
             </div>
           </div>
@@ -287,18 +269,474 @@
 
       <!-- Tab Buttons -->
       <div class="flex justify-center mb-10">
-        <div class="inline-flex p-1 rounded-xl bg-slate-900 border border-slate-800 light:bg-slate-200 light:border-slate-300">
-          <button id="tabWebBtn" class="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-primary-600 text-white" onclick="switchSkillTab('web')">
+        <div class="inline-flex p-1 rounded-xl bg-slate-200/80 border border-slate-300 dark:bg-slate-900 dark:border-slate-800">
+          <button id="tabWebBtn" class="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-primary-600 text-white shadow-md" onclick="switchSkillTab('web')">
             <i class="fa-solid fa-code mr-1.5"></i> Web Development
           </button>
-          <button id="tabNetBtn" class="px-5 py-2.5 rounded-lg text-sm font-semibold text-slate-400 dark:text-slate-400 hover:text-slate-200 transition-all duration-300" onclick="switchSkillTab('network')">
+          <button id="tabNetBtn" class="px-5 py-2.5 rounded-lg text-sm font-semibold text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-slate-200 transition-all duration-300" onclick="switchSkillTab('network')">
             <i class="fa-solid fa-network-wired mr-1.5"></i> Networking & Support
           </button>
         </div>
       </div>
 
       <!-- Skills Grid Container -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
-        <!-- WEB DEV SKILLS (Shown by default) -->
-        <div class="skill-card-web bg-slate-900 border border-slate-800/80 light:bg-white light:border-slate-200 p-6 rounded-2xl flex gap-4 items-start hover:-tran
+      <!-- WEB DEV SKILLS (Shown by default) -->
+      <div id="skillsWebContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-300">
+        <!-- Skill 1 -->
+        <div class="bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/80 p-6 rounded-2xl flex gap-4 items-start hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="p-3 bg-amber-500/10 text-amber-500 rounded-xl"><i class="fa-brands fa-html5 text-2xl"></i></div>
+          <div>
+            <h4 class="font-bold text-slate-800 dark:text-white">HTML5 & Semantic Web</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Menyusun kerangka situs web yang terstruktur, ramah SEO, dan aksesibel.</p>
+          </div>
+        </div>
+        <!-- Skill 2 -->
+        <div class="bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/80 p-6 rounded-2xl flex gap-4 items-start hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="p-3 bg-sky-500/10 text-sky-500 rounded-xl"><i class="fa-brands fa-css3-alt text-2xl"></i></div>
+          <div>
+            <h4 class="font-bold text-slate-800 dark:text-white">CSS3 & Styling</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Mengimplementasikan tata letak responsif, flexbox, grid, dan transisi animasi modern.</p>
+          </div>
+        </div>
+        <!-- Skill 3 -->
+        <div class="bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/80 p-6 rounded-2xl flex gap-4 items-start hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="p-3 bg-teal-500/10 text-teal-500 rounded-xl"><i class="fa-brands fa-css3 text-2xl"></i></div>
+          <div>
+            <h4 class="font-bold text-slate-800 dark:text-white">Tailwind CSS</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Menggunakan pendekatan utility-first untuk mempercepat pembuatan desain UI adaptif.</p>
+          </div>
+        </div>
+        <!-- Skill 4 -->
+        <div class="bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/80 p-6 rounded-2xl flex gap-4 items-start hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="p-3 bg-yellow-500/10 text-yellow-500 rounded-xl"><i class="fa-brands fa-js text-2xl"></i></div>
+          <div>
+            <h4 class="font-bold text-slate-800 dark:text-white">JavaScript (ES6+)</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Menulis logika fungsional, manipulasi DOM, AJAX, dan penanganan event asinkron.</p>
+          </div>
+        </div>
+        <!-- Skill 5 -->
+        <div class="bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/80 p-6 rounded-2xl flex gap-4 items-start hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="p-3 bg-indigo-500/10 text-indigo-500 rounded-xl"><i class="fa-solid fa-compass-drafting text-2xl"></i></div>
+          <div>
+            <h4 class="font-bold text-slate-800 dark:text-white">Framer & Web Design</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Menguasai tools perancangan visual nirkode untuk rilis portofolio interaktif.</p>
+          </div>
+        </div>
+        <!-- Skill 6 -->
+        <div class="bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/80 p-6 rounded-2xl flex gap-4 items-start hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="p-3 bg-primary-500/10 text-primary-500 rounded-xl"><i class="fa-brands fa-bootstrap text-2xl"></i></div>
+          <div>
+            <h4 class="font-bold text-slate-800 dark:text-white">Bootstrap Framework</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Konfigurasi cepat layout berbasis grid standar industri dan komponen siap pakai.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- NETWORKING SKILLS (Hidden by default) -->
+      <div id="skillsNetContainer" class="hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-300">
+        <!-- Skill 1 -->
+        <div class="bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/80 p-6 rounded-2xl flex gap-4 items-start hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="p-3 bg-rose-500/10 text-rose-500 rounded-xl"><i class="fa-solid fa-server text-2xl"></i></div>
+          <div>
+            <h4 class="font-bold text-slate-800 dark:text-white">MikroTik RouterOS</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Konfigurasi bandwidth manajemen, routing dinamis/statis, firewall filter, dan hotspot manager.</p>
+          </div>
+        </div>
+        <!-- Skill 2 -->
+        <div class="bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/80 p-6 rounded-2xl flex gap-4 items-start hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="p-3 bg-blue-500/10 text-blue-500 rounded-xl"><i class="fa-solid fa-network-wired text-2xl"></i></div>
+          <div>
+            <h4 class="font-bold text-slate-800 dark:text-white">LAN Cabling & WAN</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Implementasi penyambungan kabel UTP (Straight/Cross), crimping RJ45, fiber-optic splicing dasar, dan pengujian fluktuasi.</p>
+          </div>
+        </div>
+        <!-- Skill 3 -->
+        <div class="bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/80 p-6 rounded-2xl flex gap-4 items-start hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="p-3 bg-emerald-500/10 text-emerald-500 rounded-xl"><i class="fa-solid fa-screwdriver-wrench text-2xl"></i></div>
+          <div>
+            <h4 class="font-bold text-slate-800 dark:text-white">Troubleshooting Hardware</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Diagnosis kerusakan komponen motherboard, instalasi RAM, HDD/SSD, pembersihan debu sirkuit, dan manajemen termal.</p>
+          </div>
+        </div>
+        <!-- Skill 4 -->
+        <div class="bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/80 p-6 rounded-2xl flex gap-4 items-start hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="p-3 bg-purple-500/10 text-purple-500 rounded-xl"><i class="fa-solid fa-desktop text-2xl"></i></div>
+          <div>
+            <h4 class="font-bold text-slate-800 dark:text-white">OS Installation & Virtualization</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Pemasangan sistem operasi Windows Client/Server, distro Linux, VirtualBox, VMware, serta manajemen partisi disk.</p>
+          </div>
+        </div>
+        <!-- Skill 5 -->
+        <div class="bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/80 p-6 rounded-2xl flex gap-4 items-start hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="p-3 bg-teal-500/10 text-teal-500 rounded-xl"><i class="fa-solid fa-shield-halved text-2xl"></i></div>
+          <div>
+            <h4 class="font-bold text-slate-800 dark:text-white">Network Security Basics</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Audit port terbuka, enkripsi WPA2/WPA3, penyaringan MAC address, dan monitoring log traffic lokal.</p>
+          </div>
+        </div>
+        <!-- Skill 6 -->
+        <div class="bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/80 p-6 rounded-2xl flex gap-4 items-start hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="p-3 bg-indigo-500/10 text-indigo-500 rounded-xl"><i class="fa-solid fa-headset text-2xl"></i></div>
+          <div>
+            <h4 class="font-bold text-slate-800 dark:text-white">IT Support Helpdesk</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Pelayanan penanganan insiden teknis end-user, instalasi software kantor, setup printer sharing, dan konfigurasi VPN remote.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PENGALAMAN -->
+  <section id="pengalaman" class="py-20 bg-slate-100/50 dark:bg-slate-900/40 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center space-y-4 mb-16">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Pengalaman & Riwayat Kerja</h2>
+        <div class="w-16 h-1 bg-primary-500 mx-auto rounded-full"></div>
+        <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm md:text-base">Perjalanan profesional saya di dunia industri maupun proyek edukasional.</p>
+      </div>
+
+      <div class="relative border-l-2 border-indigo-500/30 pl-8 ml-4 sm:ml-8 max-w-4xl mx-auto space-y-12">
+        <!-- Exp 1 -->
+        <div class="relative">
+          <span class="absolute -left-[41px] top-1 bg-indigo-600 w-5 h-5 rounded-full border-4 border-slate-100 dark:border-slate-950"></span>
+          <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800/60">
+            <span class="inline-block px-3 py-1 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-[11px] font-bold rounded-full uppercase tracking-wider mb-3">Februari 2026 - Sekarang</span>
+            <h4 class="text-lg font-bold text-slate-800 dark:text-white">Kelas Industri - Front-End Web Developer</h4>
+            <p class="text-sm font-semibold text-slate-500 dark:text-slate-400">GAMELAB Indonesia</p>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+              Mempelajari standar baku industri web modern meliputi penulisan HTML semantik, manajemen style layout CSS, optimalisasi dengan Tailwind CSS, serta scripting dinamik menggunakan JavaScript murni. Berpartisipasi aktif dalam memecahkan studi kasus modular secara mandiri dan kolaboratif.
+            </p>
+          </div>
+        </div>
+
+        <!-- Exp 2 -->
+        <div class="relative">
+          <span class="absolute -left-[41px] top-1 bg-indigo-600 w-5 h-5 rounded-full border-4 border-slate-100 dark:border-slate-950"></span>
+          <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800/60">
+            <span class="inline-block px-3 py-1 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-[11px] font-bold rounded-full uppercase tracking-wider mb-3">Juli 2022 - September 2022</span>
+            <h4 class="text-lg font-bold text-slate-800 dark:text-white">Praktik Kerja Lapangan (PKL) - IT Support & Teknisi</h4>
+            <p class="text-sm font-semibold text-slate-500 dark:text-slate-400">Kencana Komputer Surakarta</p>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+              Bertanggung jawab dalam merakit hardware PC, melakukan perawatan rutin (maintenance) pada komputer jinjing klien, menyelesaikan instalasi sistem operasi Windows/Linux, serta mengonfigurasi driver perangkat keras pendukung untuk menjamin kestabilan pemakaian operasional.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTOFOLIO / PROYEK -->
+  <section id="portofolio" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center space-y-4 mb-16">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Portofolio & Proyek</h2>
+        <div class="w-16 h-1 bg-primary-500 mx-auto rounded-full"></div>
+        <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm md:text-base">Beberapa hasil karya terbaik saya selama studi akademik maupun magang.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Proyek 1 -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-800/60 flex flex-col justify-between hover:scale-[1.02] transition-all duration-300">
+          <div>
+            <div class="relative h-48 bg-gradient-to-br from-indigo-900 to-primary-800 flex items-center justify-center p-6 text-white text-center">
+              <div class="space-y-1">
+                <i class="fa-solid fa-globe text-4xl mb-2 text-indigo-400"></i>
+                <h4 class="font-bold text-sm tracking-wide uppercase">Interactive Web Portfolio</h4>
+              </div>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] font-extrabold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 px-2.5 py-1 rounded-md uppercase">Framer</span>
+                <span class="text-[10px] font-extrabold bg-purple-500/10 text-purple-600 dark:text-purple-400 px-2.5 py-1 rounded-md uppercase">UI/UX</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-800 dark:text-white">Portofolio Pribadi Framer</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Desain portofolio interaktif dengan animasi layout yang dinamis dan modern, menyajikan portofolio lengkap saya yang dapat diakses secara instan secara global.
+              </p>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <a href="https://second-zebra-202035.framer.app/-porto" target="_blank" class="w-full inline-flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-white hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 text-xs font-semibold py-3 px-4 rounded-xl transition-all">
+              Kunjungi Situs <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Proyek 2 -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-800/60 flex flex-col justify-between hover:scale-[1.02] transition-all duration-300">
+          <div>
+            <div class="relative h-48 bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center p-6 text-white text-center">
+              <div class="space-y-1">
+                <i class="fa-solid fa-server text-4xl mb-2 text-rose-400"></i>
+                <h4 class="font-bold text-sm tracking-wide uppercase">Hotspot Router Setup</h4>
+              </div>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] font-extrabold bg-rose-500/10 text-rose-600 dark:text-rose-400 px-2.5 py-1 rounded-md uppercase">MikroTik</span>
+                <span class="text-[10px] font-extrabold bg-amber-500/10 text-amber-600 dark:text-amber-400 px-2.5 py-1 rounded-md uppercase">Networking</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-800 dark:text-white">Sistem Hotspot Sekolah</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Konfigurasi router MikroTik terintegrasi dengan portal login captive, pembagian alokasi bandwidth yang stabil per-user, dan isolasi jaringan lokal untuk keamanan internal.
+              </p>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <button class="w-full inline-flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-semibold py-3 px-4 rounded-xl cursor-default">
+              <i class="fa-solid fa-lock"></i> Konfigurasi Lokal / Internal
+            </button>
+          </div>
+        </div>
+
+        <!-- Proyek 3 -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-800/60 flex flex-col justify-between hover:scale-[1.02] transition-all duration-300">
+          <div>
+            <div class="relative h-48 bg-gradient-to-br from-teal-900 to-primary-900 flex items-center justify-center p-6 text-white text-center">
+              <div class="space-y-1">
+                <i class="fa-solid fa-code text-4xl mb-2 text-emerald-400"></i>
+                <h4 class="font-bold text-sm tracking-wide uppercase">Front-End UI Concept</h4>
+              </div>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] font-extrabold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2.5 py-1 rounded-md uppercase">HTML5</span>
+                <span class="text-[10px] font-extrabold bg-sky-500/10 text-sky-600 dark:text-sky-400 px-2.5 py-1 rounded-md uppercase">Tailwind</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-800 dark:text-white">Responsive Landing Page</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Latihan pengerjaan landing page interaktif dengan optimasi performa loading super cepat, aset responsif, serta penulisan gaya modular dengan Tailwind CSS.
+              </p>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <a href="#hero" class="w-full inline-flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-white hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 text-xs font-semibold py-3 px-4 rounded-xl transition-all">
+              Kembali ke Atas <i class="fa-solid fa-arrow-up"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK -->
+  <section id="kontak" class="py-20 bg-slate-100/50 dark:bg-slate-900/40 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center space-y-4 mb-16">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Hubungi Saya</h2>
+        <div class="w-16 h-1 bg-primary-500 mx-auto rounded-full"></div>
+        <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm md:text-base">Mempunyai pertanyaan atau ingin bekerja sama? Kirimkan pesan di bawah ini.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start max-w-5xl mx-auto">
+        <!-- Informasi Kontak Fisik -->
+        <div class="lg:col-span-5 space-y-6">
+          <h3 class="text-2xl font-bold text-slate-850 dark:text-slate-200">Hubungi Secara Langsung</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            Anda dapat mendiskusikan peluang kerja, proyek kolaboratif, atau sesi konsultasi IT melalui rincian kontak di bawah ini.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <div class="flex items-center gap-4">
+              <div class="p-3.5 bg-primary-500/10 text-primary-600 dark:text-primary-400 rounded-xl">
+                <i class="fa-regular fa-envelope text-xl"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase">Kirim Email</h4>
+                <a href="mailto:khuda3496@gmail.com" class="text-sm font-bold text-slate-700 dark:text-slate-200 hover:text-primary-500 transition-colors">khuda3496@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="p-3.5 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-xl">
+                <i class="fa-solid fa-phone text-xl"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase">Kontak Telepon</h4>
+                <a href="tel:089655766263" class="text-sm font-bold text-slate-700 dark:text-slate-200 hover:text-primary-500 transition-colors">0896-5576-6263</a>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="p-3.5 bg-rose-500/10 text-rose-600 dark:text-rose-400 rounded-xl">
+                <i class="fa-solid fa-location-dot text-xl"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase">Lokasi Domisili</h4>
+                <p class="text-sm font-bold text-slate-700 dark:text-slate-200">Surakarta, Jawa Tengah, Indonesia</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulir Kontak -->
+        <div class="lg:col-span-7 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 p-6 sm:p-8 rounded-2xl shadow-sm">
+          <form id="contactForm" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="nameInput" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-2">Nama Lengkap</label>
+                <input type="text" id="nameInput" required class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-primary-500 transition-all text-sm" placeholder="John Doe">
+              </div>
+              <div>
+                <label for="emailInput" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-2">Alamat Email</label>
+                <input type="email" id="emailInput" required class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-primary-500 transition-all text-sm" placeholder="johndoe@email.com">
+              </div>
+            </div>
+            <div>
+              <label for="subjectInput" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-2">Subjek Pesan</label>
+              <input type="text" id="subjectInput" required class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-primary-500 transition-all text-sm" placeholder="Tawaran Kerjasama / Konsultasi IT">
+            </div>
+            <div>
+              <label for="messageInput" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-2">Isi Pesan Anda</label>
+              <textarea id="messageInput" rows="4" required class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-primary-500 transition-all text-sm resize-none" placeholder="Tulis rincian pesan Anda di sini..."></textarea>
+            </div>
+            <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-primary-600 to-indigo-600 hover:from-primary-500 hover:to-indigo-500 text-white font-bold rounded-xl text-center shadow-lg transition-all active:scale-95 text-sm flex items-center justify-center gap-2">
+              <i class="fa-solid fa-paper-plane"></i> Kirim Pesan Sekarang
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-900 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div>
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          &copy; 2026 <span class="font-bold">Khoirul Huda</span>. Semua Hak Cipta Dilindungi.
+        </p>
+      </div>
+      <div class="flex items-center gap-6 text-slate-500 dark:text-slate-400 text-sm">
+        <a href="#tentang" class="hover:text-primary-500 transition-colors">Tentang</a>
+        <a href="#keahlian" class="hover:text-primary-500 transition-colors">Keahlian</a>
+        <a href="#portofolio" class="hover:text-primary-500 transition-colors">Proyek</a>
+        <a href="#kontak" class="hover:text-primary-500 transition-colors">Kontak</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. MOBILE MENU TOGGLER
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      const icon = mobileMenuBtn.querySelector('i');
+      if (mobileMenu.classList.contains('hidden')) {
+        icon.className = 'fa-solid fa-bars text-xl';
+      } else {
+        icon.className = 'fa-solid fa-xmark text-xl';
+      }
+    });
+
+    // Close mobile menu upon link click
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuBtn.querySelector('i').className = 'fa-solid fa-bars text-xl';
+      });
+    });
+
+    // 2. THEME SWITCHER (Light / Dark Mode)
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeToggleIcon = document.getElementById('themeToggleIcon');
+    const htmlElement = document.documentElement;
+
+    // Check Local Storage or System Preferences
+    const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    if (currentTheme === 'dark') {
+      htmlElement.classList.add('dark');
+      themeToggleIcon.className = 'fa-solid fa-sun text-amber-400 text-sm md:text-base';
+    } else {
+      htmlElement.classList.remove('dark');
+      themeToggleIcon.className = 'fa-solid fa-moon text-indigo-500 text-sm md:text-base';
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      if (htmlElement.classList.contains('dark')) {
+        htmlElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        themeToggleIcon.className = 'fa-solid fa-moon text-indigo-500 text-sm md:text-base';
+      } else {
+        htmlElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggleIcon.className = 'fa-solid fa-sun text-amber-400 text-sm md:text-base';
+      }
+    });
+
+    // 3. SKILLS TAB SWITCHER
+    function switchSkillTab(tab) {
+      const tabWebBtn = document.getElementById('tabWebBtn');
+      const tabNetBtn = document.getElementById('tabNetBtn');
+      const skillsWebContainer = document.getElementById('skillsWebContainer');
+      const skillsNetContainer = document.getElementById('skillsNetContainer');
+
+      if (tab === 'web') {
+        // Active Button Web
+        tabWebBtn.className = "px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-primary-600 text-white shadow-md";
+        // Inactive Button Network
+        tabNetBtn.className = "px-5 py-2.5 rounded-lg text-sm font-semibold text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200 transition-all duration-300";
+        // Show/Hide Containers
+        skillsWebContainer.classList.remove('hidden');
+        skillsWebContainer.classList.add('grid');
+        skillsNetContainer.classList.add('hidden');
+        skillsNetContainer.classList.remove('grid');
+      } else {
+        // Active Button Network
+        tabNetBtn.className = "px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-primary-600 text-white shadow-md";
+        // Inactive Button Web
+        tabWebBtn.className = "px-5 py-2.5 rounded-lg text-sm font-semibold text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200 transition-all duration-300";
+        // Show/Hide Containers
+        skillsNetContainer.classList.remove('hidden');
+        skillsNetContainer.classList.add('grid');
+        skillsWebContainer.classList.add('hidden');
+        skillsWebContainer.classList.remove('grid');
+      }
+    }
+
+    // 4. CONTACT FORM SIMULATOR & CUSTOM TOAST
+    const contactForm = document.getElementById('contactForm');
+    const toastNotification = document.getElementById('toastNotification');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Retrieve and organize form values
+      const senderName = document.getElementById('nameInput').value;
+      const senderEmail = document.getElementById('emailInput').value;
+      const subject = document.getElementById('subjectInput').value;
+      const message = document.getElementById('messageInput').value;
+
+      const mockMessage = {
+        name: senderName,
+        email: senderEmail,
+        subject: subject,
+        message: message,
+        timestamp: new Date().toISOString()
+      };
+
+      // Store in LocalStorage as a simulator state
+      let messagesList = JSON.parse(localStorage.getItem('simulated_messages') || '[]');
+      messagesList.push(mockMessage);
+      localStorage.setItem('simulated_messages', JSON.stringify(messagesList));
+
+      // Reset form
+      contactForm.reset();
+
+      // Show Custom Toast Notification (replacing window.alert)
+      toastNotification.classList.remove('translate-y-[-150%]', 'opacity-0');
+      toastNotification.classList.add('translate-y-0', 'opacity-100');
+
+      // Dismiss Toast after 4 seconds
+      setTimeout(() => {
+        toastNotification.classList.remove('translate-y-0', 'opacity-100');
+        toastNotification.classList.add('translate-y-[-150%]', 'opacity-0');
+      }, 4000);
+    });
+  </script>
+</body>
+</html>
